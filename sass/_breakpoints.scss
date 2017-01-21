@@ -1,0 +1,74 @@
+/* -----------------------------------------
+ DEVICE LIST
+----------------------------------------- */
+$breakpoints: (
+  xxs: 480px,
+  xs : 524px,
+  sm: 768px,
+  md: 992px,
+  lg : 1200px
+);
+
+@mixin min-width($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+  }
+
+  @media screen and (min-width: #{$mq-breakpoint} + 1) {
+    @content;
+  }
+}
+
+@mixin max-width($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+  }
+
+  @media screen and (max-width: #{$mq-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin between-width($mq1-breakpoint, $mq2-breakpoint, $mq-breakpoints: $breakpoints) {
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq1-breakpoint) {
+    $mq1-breakpoint: map-get($mq-breakpoints, $mq1-breakpoint);
+  }
+
+  @if map-has-key($mq-breakpoints, $mq2-breakpoint) {
+    $mq2-breakpoint: map-get($mq-breakpoints, $mq2-breakpoint);
+  }
+
+  @media screen and (min-width: #{$mq1-breakpoint} + 1) and (max-width: #{$mq2-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin orient($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+  $mq-media-query: "screen and";
+
+  @if $mq-breakpoint == landscape or $mq-breakpoint == portrait {
+    $mq-media-query: "#{$mq-media-query} (orientation: #{$mq-breakpoint})";
+  }
+  @else if $mq-breakpoint == retina {
+    $mq-media-query: "#{$mq-media-query} (-webkit-min-device-pixel-ratio: 2)," +
+                     "#{$mq-media-query} (min-resolution: 2dppx)";
+  }
+  @else {
+    // If $mq-breakpoint is a key that exists in
+    // $mq-breakpoints, get and use the value
+    @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+      $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+    }
+    $mq-media-query: "#{$mq-media-query} (min-width: #{$mq-breakpoint})";
+  }
+
+  @media #{$mq-media-query} {
+    @content;
+  }
+}

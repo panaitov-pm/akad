@@ -1,0 +1,59 @@
+/*---------------------------------------
+ PLACEHOLDER
+----------------------------------------- */
+// added ... if string is longer than field
+input::-moz-placeholder     {text-overflow:ellipsis;} 
+textarea:-ms-input-placeholder {text-overflow:ellipsis;}    
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #676767;
+	font-style: italic;
+	transition: color 0.3s ease-in-out;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+	color: #676767;
+	font-style: italic;
+	font-weight: 300;
+	transition: color 0.3s ease-in-out;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #676767;
+	font-style: italic;
+	font-weight: 300;
+	transition: color 0.3s ease-in-out;
+}
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+	color: #676767;
+	font-style: italic;
+	font-weight: 300;
+	transition: color 0.3s ease-in-out;
+}
+
+//Remove placeholder on field focus
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {color: transparent;}
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder          {color: transparent;}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder      {color: transparent;}
+
+input:focus,
+textarea:focus,
+button:focus,
+a:focus {
+	outline: none;
+}
+
+input:focus,
+textarea:focus {
+	border-color: #FFF;
+}
+
+button:focus {
+	box-shadow: 0 0 10px currentColor;
+}
+

@@ -1,0 +1,579 @@
+@import 'breakpoints';
+@import 'placeholder';
+@import 'variables';
+
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('../fonts/open-sans/opensans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/open-sans/opensans-regular-webfont.woff') format('woff'),
+         url('../fonts/open-sans/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/open-sans/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/open-sans/OpenSans-Bold.woff') format('woff'),
+       url('../fonts/open-sans/OpenSans-Bold.ttf')  format('truetype'), 
+       url('../fonts/open-sans/OpenSans-Bold.svg#OpenSans-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/montserrat/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/montserrat/Montserrat-Bold.otf')  format('opentype'),
+       url('../fonts/montserrat/Montserrat-Bold.woff') format('woff'),
+       url('../fonts/montserrat/Montserrat-Bold.ttf')  format('truetype'),
+       url('../fonts/montserrat/Montserrat-Bold.svg#Montserrat-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* -----------------------------------------
+ PLACEHOLDER
+----------------------------------------- */
+
+input[placeholder] {text-overflow: ellipsis;}
+input::-moz-placeholder {text-overflow: ellipsis;}
+input:-moz-placeholder {text-overflow: ellipsis;}
+input:-ms-input-placeholder {text-overflow: ellipsis;}
+
+input::-webkit-input-placeholder {
+    color: #7a7b7f;
+    transition: color 0.4s ease-in-out;
+}
+input:-moz-placeholder {
+    color: #7a7b7f;
+    transition: color 0.4s ease-in-out;
+}
+input::-moz-placeholder {
+    color: #7a7b7f;
+    transition: color 0.4s ease-in-out;
+}
+input:-ms-input-placeholder {
+    color: #7a7b7f;
+    transition: color 0.4s ease-in-out;
+}
+input::-ms-input-placeholder {
+    color: #7a7b7f;
+    transition: color 0.4s ease-in-out;
+}
+
+input:focus::-webkit-input-placeholder {color: transparent;}
+input:focus::-moz-placeholder {color: transparent;}
+input:focus:-moz-placeholder {color: transparent;}
+input:focus:-ms-input-placeholder {color: transparent;}
+
+/* -----------------------------------------
+ GLOBAL
+----------------------------------------- */
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+
+}
+
+body {
+    min-height: 100%;
+    font-family: 'OpenSans', sans-serif;
+    color: #60606e;
+}
+
+input {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+
+.bg-title:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 67px;
+    height: 21px;
+    background-color: #7beec7;
+    z-index: -1;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.cf:after {
+	content: '';
+	clear: both;
+	display: table;
+	height: 0;
+}
+
+/* -----------------------------------------
+ BODY
+----------------------------------------- */
+body {
+	position: relative;
+	
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 100%;
+		opacity: 0;
+		visibility: hidden;
+		background-color: rgba(0, 0, 0, 0.7);
+		transition: all 0.2s ease-in-out;
+	}
+
+	&.js-nav-open {
+		&:after {
+			width: calc(100% - 250px);
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+/* -----------------------------------------
+ HEADER
+----------------------------------------- */
+header {
+    min-height: 500px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    background: rgba(96, 96, 110, 0.5) url(../img/header-bg.jpg) center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    
+    @include max-width(xxs) {
+    	min-height: 100vh;
+    }
+}
+
+.header__top {
+    height: 100px;
+    padding: 40px 0;
+}
+
+.logo {
+	float: left;
+    font-size: 1.125rem;/*18px*/
+    text-transform: uppercase;
+}
+
+nav {
+	float: right;
+    position: relative;
+    text-align: right;
+}
+
+.nav-toggle {
+	float: right;
+	position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 31px;
+    cursor: pointer;
+    z-index: 1;
+    
+    .js-nav-open & {
+    	display: none;
+    }
+}
+
+.nav-toggle p{
+    margin-top: 6px;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #abacb1;
+}
+
+.nav-toggle:hover p {
+    box-shadow: 0 1px #fff;
+}
+
+.nav-toggle p:first-child {
+    margin-top: 0;
+}
+
+.nav-toggle p:nth-child(2) {
+    width: 15px;
+}
+
+.nav-toggle p:last-child {
+    width: 23px;
+}
+
+.nav {
+	position: fixed;
+    top: 0;
+    right: -250px;
+    padding-top: 40px;
+    width: 250px;
+    transition: right 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.7);
+     z-index: 1;
+    
+    .js-nav-open & {
+    	right: 0;
+    }
+}
+
+.nav__list {
+    font-size: 0.875rem;/*14px*/
+    list-style-type: none;
+    height: 500px;
+    overflow: auto;
+}
+
+.nav__close {
+	position: absolute;
+	display: block;
+	top: 8px;
+	left: 5px;
+	transition: color 0.3s ease-in-out;
+	
+	&:hover {
+		color: #FFF;
+	}
+}
+
+.nav__close-icon {
+	width: 25px;
+	height: 25px;
+	fill: rgba(#fff, 0.5);
+	transition: all 0.2s ease-in-out;
+	
+	&:hover {
+		fill: #fff;
+	}
+}
+
+.nav__item {
+    border-top: 1px dashed #fff;
+}
+
+.nav__item:last-child {
+    border-bottom: 1px dashed #fff;;
+}
+
+.nav__link {
+    display: block;
+    padding: 5px 8px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    color: #FFF;
+}
+
+.nav__link:hover {
+    opacity: 0.7;
+    color: #FFF;
+    font-style: italic;
+}
+
+.header__bottom {
+    text-align: center;
+    line-height: 400px;
+    text-transform: uppercase;
+}
+
+.header__info {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 2;
+}
+
+.header__title {
+    font-size: 2.25rem;/*36px*/
+}
+
+.header__subtitle {
+    font-size: 0.875rem;/*14px*/
+}
+
+.header__link {
+    padding-bottom: 1px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.header__link:hover,
+.header__link:focus {
+    border-color: currentColor;
+}
+
+/* -----------------------------------------
+ INFO
+----------------------------------------- */
+.info {
+    padding: 70px 0;
+    
+    @include max-width(xs) {
+    	padding: 50px 0 0;
+    }
+}
+
+.info-box {
+    font-size: 0.875rem;/*14px*/
+}
+
+.info-box__title {
+    position: relative;
+    font-size: 1.875rem;/*30px*/
+}
+
+.info-box__text {
+    line-height: 2;
+}
+
+.info-box__subtitle {
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+/* -----------------------------------------
+ BENEFIT and part of TEAM
+----------------------------------------- */
+.benefit {
+
+	@include max-width(xs) {
+    	padding-top: 30px;
+    }
+
+    [class^=col-] {
+
+    	@include min-width(sm) {
+
+    		margin-bottom: 25px;
+    		
+	    	&:nth-child(3n + 4) {
+	    		clear: both;
+	    	}
+	    }
+
+	    @include max-width(sm) {
+	    	margin-bottom: 25px;
+	    	
+	    	&:nth-child(2n + 3) {
+	    		clear: both;
+	    	}
+	    }
+    }
+}
+
+.benefit .row {
+    margin-bottom: 50px;
+    
+    @include max-width(xs) {
+    	margin-bottom: 0;
+    }
+}
+
+.benefit-head,
+.team-head {
+    min-height: 190px;
+    text-align: center;
+    
+    @include max-width(xs) {
+    	min-height: 100px;
+    }
+}
+
+.benefit-head__title,
+.team__title {
+    display: inline-block;
+    position: relative;
+    font-size: 1.875rem;/*30px*/
+}
+
+.benefit-head__subtitle,
+.team__subtitle {
+    margin: 16px auto 0;
+    width: 62.4%;
+    
+    @include max-width(xs) {
+    	width: 100%;
+    }
+}
+
+.benefit-box__head {
+	margin-bottom: 15px;
+}
+
+.benefit-box__icon {
+	float: left;
+    width: 40px;
+    height: 40px;
+    font-size: 1.875rem;/*30px*/
+    text-align: center;
+    background-color: #7beec7;
+    color: #FFF;
+}
+
+.benefit-box__title {
+    font-size: 1.125rem;/*18px*/
+    line-height: 40px;
+    margin-left: 50px;
+}
+
+.benefit-box__text {
+    line-height: 1.875;/*30px*/
+}
+
+/* -----------------------------------------
+ TEAM
+----------------------------------------- */
+.team {
+	@include max-width(xs) {
+    	padding-top: 30px;
+    }
+}
+
+.team__title {
+	@include max-width(340px) {
+    	font-size: 1.8em;
+    }
+}
+
+.team .img-box {
+    margin-bottom: 25px;
+}
+
+.team-head {
+	@include max-width(xs) {
+    	margin-bottom: 30px;
+    }
+}
+
+/* -----------------------------------------
+ TEAM
+----------------------------------------- */
+footer {
+    padding: 45px 0 50px;
+    background-color: #7beec7;
+    
+    @include max-width(xs) {
+    	padding-bottom: 0;
+    }
+}
+
+.offer {
+    color: #FFF;
+    
+    @include max-width(xs) {
+    	text-align: center;
+    }
+}
+
+.offer__title {
+    font-size: 1.875rem;/*30px*/
+    text-transform: uppercase;
+}
+
+.offer__button {
+	display: inline-block;
+    margin-top: 27px;
+    width: 165px;
+    height: 49px;
+    border: 2px solid transparent;
+    background-color: #fff;
+    color: #7beec7;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+
+.offer__button:hover {
+    border-color: #fff;
+    background-color: #7beec7;
+    color: #FFF;
+}
+
+/* Inform */
+
+.inform {
+    margin-top: 10px;
+    padding: 18px 25px 18px 20px;
+    background-color: #fff;
+}
+
+.inform__title {
+    font-size: 1.5rem;/*24px*/
+}
+
+.inform__subtitle {
+    margin: 10px 0 30px;
+    color: #999;
+    line-height: 1.5;
+}
+
+.inform input[type='search'],
+.inform input[type='submit'] {
+    display: inline-block;
+    vertical-align: top;
+    height: 50px;
+    text-transform: uppercase;
+}
+
+.inform input[type='search'] {
+    padding: 0 16px;
+    width: 73.5%;
+    font-size: 0.75rem;/*12px*/
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.inform input[type='submit'] {
+    width: 26.5%;
+    font-size: 0.875rem;
+    border: 2px solid transparent;
+    background-color: #7beec7;
+    color: #FFF;
+    transition: all 0.2s ease-in-out;
+}
+
+.inform input[type='submit']:hover {
+    border-color: #7beec7;
+    background-color: #fff;
+    color: #7beec7;
+    font-weight: 700;
+} 
+
+@include max-width(xs) {
+	[class^=col-] {
+		width: 100%;
+		margin-bottom: 30px;
+	}
+
+	.team [class^=col-] {
+		width: 50%;
+		margin-bottom: 0;
+	}
+}
+
+@include max-width(380px) {
+	.team [class^=col-] {
+		text-align: center;
+		width: 100%;
+	}
+}
